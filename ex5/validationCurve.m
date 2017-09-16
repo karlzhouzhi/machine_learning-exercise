@@ -39,14 +39,23 @@ error_val = zeros(length(lambda_vec), 1);
 %
 %
 
+for i = 1:length(lambda_vec)
+    lambda = lambda_vec(i);
+    
+    % compute training error
+    m = size(X,1);
+    [theta] = trainLinearReg(X, y, lambda);
+    h = X * theta;
+    Jtrain = 1/(2*m) * (h-y)'*(h-y);
 
-
-
-
-
-
-
-
+    % compute cross validation error
+    mval = size(Xval,1);
+    hval = Xval * theta;
+    Jval = 1/(2*mval) * (hval-yval)'*(hval-yval);
+            
+    error_train(i) = Jtrain;
+    error_val(i) = Jval;
+end
 
 % =========================================================================
 

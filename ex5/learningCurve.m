@@ -52,7 +52,15 @@ error_val   = zeros(m, 1);
 %
 
 % ---------------------- Sample Solution ----------------------
-
+mCV = size(Xval,1);
+for i=1:m
+    [theta] = trainLinearReg(X(1:i,:), y(1:i), lambda);
+    h = X(1:i,:) * theta;
+    error_train(i) = 1/(2*i) * (h-y(1:i))'*(h-y(1:i));
+    
+    hCV = Xval * theta;
+    error_val(i) = 1/(2*mCV) * (hCV-yval)'*(hCV-yval);
+end
 
 
 

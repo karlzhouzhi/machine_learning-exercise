@@ -11,7 +11,7 @@ X_norm = bsxfun(@minus, X, mu);
 sigma = std(X_norm);
 X_norm = bsxfun(@rdivide, X_norm, sigma);
 
-
+% above equals: (X-mu)/std(X-mu)
 % ============================================================
 
 end
